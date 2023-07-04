@@ -1,0 +1,116 @@
+#signup{
+    width: 50%;
+    margin: 10vh auto;
+}
+#center{
+    text-align: center;
+    margin: 5% auto;
+}
+.required:after{
+    content: "*";
+    color: red;
+}
+#getinTouch{
+    margin:auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(171, 171, 171);
+}
+#getinTouch>h1{
+    width:60%;
+    text-align: center;
+    margin:auto;
+}
+
+#align{
+    width:95%;
+    margin:auto;
+}
+input{
+    margin: 10px 0px;
+}
+#about{
+    margin-left:auto;
+    /* width: 150%; */
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(171, 171, 171);
+}
+.imgContainer {
+    margin: auto;
+    max-width: 12rem;
+    max-height: 20rem;
+    overflow: hidden;
+}
+.light{
+    --main-heading: #3b83b0;
+    --para-clr: #333;
+    --bg-clr: #fff;
+    --m-clr: white;
+    --ele-clr:rgb(243, 223, 186);
+    --modal-clr:white;
+}
+.dark{
+    --main-heading: #4f83a2;
+    --para-clr: #fff;
+    --bg-clr: #111b20;
+    --m-clr: black;
+    --ele-clr:#44687d;
+    --modal-clr:#292b2c;
+}
+h2{
+    color: var(--main-heading);
+}
+body{
+    background-color: var(--bg-clr);
+    color: var(--para-clr);
+}
+.card{
+    background-color: var(--bg-clr);
+    border-color: var(--para-clr);
+    color: var(--para-clr);
+}
+tbody{
+    color: var(--para-clr);
+    font-weight: bold;
+}
+.text-info{
+    word-break: break-all;
+}
+.theme{
+    position: fixed;
+    left:0;
+    bottom: 50px;
+    font-size:larger;
+    background-color: var(--para-clr);
+}
+.ele{
+    background-color: var(--ele-clr);
+    border-color: var(--para-clr);
+    color: var(--para-clr);
+}
+.fa-bell{
+    color: black !important;
+    vertical-align: middle;
+}
+.my-modal .modal-content{
+    background-color: var(--modal-clr);
+}
+#body{
+    padding-bottom: 50px;
+}
+.footer {
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color:#5f9abc;
+}
+
+.footer p {
+    padding-top: 1%;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--para-clr);
+}
