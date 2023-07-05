@@ -5,9 +5,9 @@ function Home(){
     return(
         <div id="center" className="d-flex align-items-center justify-content-center" style={{width:"100%"}}>
             <div>
-            <h1 className="pt-5">WELCOME</h1>
-            <h2>Online Chatting is fun</h2>
-            <img src="logo.png" style={{width:"25vw",height:"25vw",margin:"10px"}}/>
+            <h1 className="pt-5">VAARTALAAP</h1>
+            <h2>WELCOME!!</h2>
+            <img src="logo.png" style={{width:"25vw",height:"25vw",margin:"20px",borderRadius:"10px"}}/>
             <br/>
             <ul className="list-group list-group-horizontal d-flex align-items-center justify-content-around" type="none">
             <li className="nav-item">

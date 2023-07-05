@@ -21,7 +21,7 @@ function Chats(){
                 :(<><div className="d-none d-md-block col-md-4" style={{height:"90vh",padding:"1rem",borderRight:(theme==="light"?"1px solid #292b2c":"1px solid white")}}>
                 {state && <MyChats fetchAgain={fetchAgain}/>}
                 </div>
-                <div className="col-12 col-md-8" style={{height:"85vh",padding:"1rem"}}>
+                <div className="col-12 col-md-8" style={{height:"85vh",padding:"0.5rem"}}>
                 {state && <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
                 </div></>)}
 

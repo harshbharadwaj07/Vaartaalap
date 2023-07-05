@@ -10,7 +10,8 @@ import Profile from "./extras/Profile";
 import Image from "react-bootstrap/Image";
 import UpdateGroup from "./extras/UpdateGroup";
 
-const ENDPOINT="http://localhost:5000";
+// const ENDPOINT="http://localhost:5000";
+const ENDPOINT="https://vaartalaap.onrender.com";
 var socket,selectChatCompare;
 
 function SingleChat({fetchAgain,setFetchAgain}){
@@ -20,6 +21,7 @@ function SingleChat({fetchAgain,setFetchAgain}){
     const [load,setLoad]=useState(false);
     const [newMessage,setNewMessage]=useState();
     const [socketConnect,setSocketConnect]=useState(false);
+    const [sending,setSending]=useState(false);
     // Toast
     const [showB, setShowB] = useState(true);
     const toggleShowB = () => setShowB(!showB);
@@ -39,8 +41,9 @@ function SingleChat({fetchAgain,setFetchAgain}){
     
     
     const handleSubmit=async(event)=>{
+      setSending(true);
       if(!event.shiftKey){
-      if((event.key==="Enter"||event.type==="click") && newMessage.trim()){
+      if(((event.key==="Enter" && !event.shiftKey)||event.type==="click") && newMessage.trim()){
         // textareaRef.current.style.height = 'auto'; // Reset textarea height
         try {
           const res=await fetch("/sendMsg",{
@@ -73,39 +76,8 @@ function SingleChat({fetchAgain,setFetchAgain}){
         }
       }
     }
+      setSending(false);
     }
-
-
-    // const handleNotifs=async()=>{
-    //   try {
-    //     const res=await fetch("/notif",{
-    //         method:"POST",
-    //         headers:{
-    //             "Content-Type":"application/json"
-    //         },
-    //         credentials:"include",
-    //         body:
-    //             JSON.stringify({
-    //             chatId: selectChat._id,
-    //             num:notification.length
-    //         })
-    //     });
-    //     const data=await res.json();
-    //       if(res.status===200){
-    //         setNewMessage("");
-    //         socket.emit("new message",data)
-    //         setMessages([...messages,data]);
-    //         setFetchAgain(!fetchAgain);
-    //       }    
-    //     }catch (error) {
-    //       <Toast onClose={toggleShowB} show={showB} animation={false}>
-    //       <Toast.Header>
-    //         <strong className="me-auto">Error Occured</strong>
-    //       </Toast.Header>
-    //       <Toast.Body>Failed to send message</Toast.Body>
-    //     </Toast>
-    //   }
-    // }
 
     const fetchMessages=async()=>{
       if(!selectChat) return;
@@ -208,9 +180,10 @@ function SingleChat({fetchAgain,setFetchAgain}){
                   autoComplete="off"
                   style={{ maxHeight: "80px" }}
                   ref={textareaRef}
+                  disabled={sending}
                 />
               </Form.Group>
-              <Button className="ml-2" variant="success" onClick={handleSubmit}>Send</Button>
+              <Button className="ml-2" variant="success" disabled={sending} onClick={handleSubmit}>{sending?<Spinner size="sm"/>:"Send"}</Button>
             </div>
 
             </>}

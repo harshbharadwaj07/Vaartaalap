@@ -8,8 +8,9 @@ import GroupChat from "./extras/GroupChat";
 import io from "socket.io-client";
 import Alert from "react-bootstrap/Alert"
 
-const ENDPOINT="http://localhost:5000";
-var socket,selectChatCompare;
+// const ENDPOINT="http://localhost:5000";
+const ENDPOINT="https://vaartalaap.onrender.com";
+var socket;
 
 function MyChats({fetchAgain,setFetchAgain}){
     const [loggedUser,setLoggedUser]=useState("");
@@ -18,11 +19,13 @@ function MyChats({fetchAgain,setFetchAgain}){
     const [showAlert, setShowAlert] = useState(false);
     const [type,setType]=useState("");
     const [alertMessage, setAlertMessage] = useState("");
+    const [loadChat,setLoadChat]=useState(false);
 
     const getPerson=(loggedUser,users)=>{
         return users[0].username===loggedUser?users[1]:users[0];
     }
     const fetchChats=async ()=>{
+        setLoadChat(true);
         try{
             const res=await fetch("/chats",{
                 method:"GET",
@@ -35,6 +38,7 @@ function MyChats({fetchAgain,setFetchAgain}){
             if(res.status===200){
                 const data=await res.json();
                 setChats(data);
+                setLoadChat(false);
             }
         }catch(err){
             navigate("/signin");
@@ -123,7 +127,6 @@ function MyChats({fetchAgain,setFetchAgain}){
           let alertMessage = `'${deletedGroupData.admin.name}' deleted the group: '${deletedGroupData.chatName}'`;
           setAlertMessage(alertMessage);
           setChats(updatedChats);
-        //   setFetchAgain(!fetchAgain); // Trigger re-render of the component
           if(selectChat._id===deletedGroupData._id){
             setSelectChat({});
           }
@@ -153,7 +156,9 @@ function MyChats({fetchAgain,setFetchAgain}){
             )}
             <div className="overflow-y-scroll p-3" style={{height:"80vh"}}>
                 {/* {console.log(selectChat)} */}
-            {chats ? (
+            
+            {(chats.length===0 && loadChat===false) && (<b>Search a user to begin chat</b>)}
+            {(chats.length>0) ? (
                 chats.map((chat) => (
                     <Card onClick={() => setSelectChat(chat)} key={chat._id} style={selectChat._id===chat._id?{backgroundColor:"#38B2AC",color:"white"}:{}}>
 
@@ -180,9 +185,9 @@ function MyChats({fetchAgain,setFetchAgain}){
                 </Card>
                 ))
             ) : (
-                <div style={{color:(theme==="light"?"dark":"white")}}><strong>Wait...</strong><Spinner animation="grow" size="lg"/></div>
+                (loadChat) && <div style={{color:(theme==="light"?"dark":"white")}}><strong>Fetching Chats ... </strong><Spinner animation="grow" size="lg"/></div>
+                
             )}
-            {(chats.length===0) && (<><b>Search a user to begin chat</b></>)}
         </div>
         </div>
     )

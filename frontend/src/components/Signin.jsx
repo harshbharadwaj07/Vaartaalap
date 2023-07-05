@@ -71,7 +71,7 @@ function Signin(){
             <div>
             <h1 id="center">Login</h1>
             {cond && <Alert msg={errormsg} type={"warning"}/>}
-            <form method="POST">
+            <form method="POST" disabled={load}>
             <div className="input-group mb-3">
                 <span className="input-group-text name required my-2">Email</span>
                 <input type="email" className="form-control" id="username" aria-describedby="emailHelp" name="username" onChange={handleChange} value={sess.username}/>
@@ -80,9 +80,9 @@ function Signin(){
                 <span className="input-group-text name required my-2">Password</span>
                 <input type={!isVisible ? "password" : "text"} className="form-control" id="password" name="password" onChange={handleChange} value={sess.password}/>
             </div>
-            <input type="checkbox" onClick={()=>setVisible(!isVisible)}/> Show Password
+            <input type="checkbox" disabled={load} onClick={()=>setVisible(!isVisible)} style={{transform : "scale(1.5)",margin:"2px"}}/> Show Password
             <br/><br/>
-            <button type="submit" className="btn btn-primary" onClick={loginUser} style={{width:"100%"}}>{load===false?"Submit":<div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>}</button>
+            <button type="submit" className="btn btn-primary" disabled={load} onClick={loginUser} style={{width:"100%"}}>{load===false?"Submit":<div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>}</button>
             </form>
             <br/><br/>
             <ul className="list-group list-group-horizontal d-flex justify-content-around" type="none">

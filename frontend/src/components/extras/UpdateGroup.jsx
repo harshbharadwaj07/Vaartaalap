@@ -11,8 +11,9 @@ import Spinner from "react-bootstrap/Spinner"
 import Alert from "../Alert";
 import io from "socket.io-client";
 
-const ENDPOINT="http://localhost:5000";
-var socket,selectChatCompare;
+// const ENDPOINT="http://localhost:5000";
+const ENDPOINT="https://vaartalaap.onrender.com";
+var socket;
 
 function UpdateGroup({fetchAgain,setFetchAgain,fetchMessages}){
     const navigate=useNavigate();

@@ -10,7 +10,8 @@ import ShowUser from "./ShowUser";
 import Alert from "../Alert"
 import io from "socket.io-client"
 
-const ENDPOINT="http://localhost:5000";
+// const ENDPOINT="http://localhost:5000";
+const ENDPOINT="https://vaartalaap.onrender.com";
 var socket;
 
 function GroupChat({children}){

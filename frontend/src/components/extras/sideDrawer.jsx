@@ -152,7 +152,7 @@ function SideDrawer(){
                 </Offcanvas.Body>
             </Offcanvas>
             
-            <h2 className="fw-bold align-middle">Vartalaap</h2>
+            <h2 className="fw-bold align-middle" style={{margin:"auto"}}>Vaartalaap</h2>
             <div>
                 {/* Notification */}
                 <DropdownButton

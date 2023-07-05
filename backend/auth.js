@@ -334,24 +334,6 @@ module.exports=function(app){
     }
   })
 
-  // app.post("/notif",async function(req,res){
-  //   if(req.isAuthenticated){
-  //     const {num}=req.body;
-  //     const updateNotif=await Chat.findByIdAndUpdate(
-  //       req.body.chatId,
-  //       {notification:num}
-  //     )
-  //     .populate("users","-password")
-  //     .populate("admin","-password");
-  //     if(!updateNotif){
-  //       res.status(404);
-  //       throw new Error("ChatNotFound");
-  //     }else{
-  //       res.json(updateNotif);
-  //     }
-  //   }else res.send("Not Authenticated");
-  // })
-
   app.post("/register",async function(req,res){
     const {name,username,password,cpassword,pic}=req.body;
     if(name.length===0||username.length===0||password.length===0||cpassword.length===0){

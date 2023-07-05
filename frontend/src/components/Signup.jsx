@@ -105,7 +105,7 @@ function Signup(){
                 <h1 id="center">Registration</h1>
                 {cond && <Alert msg={errormsg} type="warning"/>}
                 
-                <form method="POST">
+                <form method="POST" disabled={load}>
                 <div className="input-group mb-3">
                     <span className="input-group-text name required my-2">Full Name</span>
                     <input type="text" className="form-control" id="name" aria-describedby="emailHelp" name="name" onChange={handleChange} value={user.name}/>
@@ -119,18 +119,18 @@ function Signup(){
                     <input type={!isVisible ? "password" : "text"} className="form-control" id="password" name="password" onChange={handleChange} value={user.password}/>
                 </div>
                 <div className="input-group mb-3">
-                    <span className="input-group-text name required my-2">Confirm Password</span>
+                    <span className="input-group-text name required my-2 p-1">Confirm Pass</span>
                     <input type={!isVisible ? "password" : "text"} className="form-control" id="cpassword" name="cpassword" onChange={handleChange} value={user.cpassword}/>
                 </div>
-                <input type="checkbox" onClick={()=>setVisible(!isVisible)}/> Show Passwords
+                <input type="checkbox" disabled={load} onClick={()=>setVisible(!isVisible)} style={{transform : "scale(1.5)",margin:"2px"}}/> Show Passwords
                 <br/>
                 <br/>
                 
                 <div className="mb-3">
                     <label htmlFor="img" className="form-label">Upload Image</label>
-                    <input type="file" className="form-control" id="pic" name="pic" onChange={(e) => {picChange(e)}}/>
+                    <input type="file" className="form-control" id="pic" name="pic" disabled={load} onChange={(e) => {picChange(e)}}/>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleClick} style={{width:"100%"}}>{load===false?"Submit":<div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>}</button>
+                <button type="submit" className="btn btn-primary" disabled={load} onClick={handleClick} style={{width:"100%"}}>{load===false?"Submit":<div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>}</button>
                 </form>
                     <br/><br/>
                 <ul className="list-group list-group-horizontal d-flex justify-content-around" type="none">
