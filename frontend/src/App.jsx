@@ -1,8 +1,6 @@
 import React,{createContext, useEffect, useReducer, useState} from "react";
 import {Route,Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Logout from "./components/Logout";
@@ -43,7 +41,6 @@ function App(){
             <Routes>
             <Route path="/" element={<Home/>} exact/>
             <Route path="/chats" element={<Chats/>} exact/>
-            <Route path="/about" element={<About/>} exact/>
             <Route path="/signin" element={<Signin/>} exact/>
             <Route path="/signup" element={<Signup/>} exact/>
             <Route path="/logout" element={<Logout/>} exact/>

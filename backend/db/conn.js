@@ -4,3 +4,13 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+// Successful connection
+mongoose.connection.on('connected', () => {
+  console.log('Successfully connected to the database');
+});
+
+// Connection error
+mongoose.connection.on('error', (err) => {
+  console.error('Failed to connect to the database:', err);
+});

@@ -9,7 +9,7 @@ import io from "socket.io-client";
 import Alert from "react-bootstrap/Alert"
 
 // const ENDPOINT="http://localhost:5000";
-const ENDPOINT="https://vaartalaap.onrender.com";
+const ENDPOINT="https://vaartalaap-backend.onrender.com";
 var socket;
 
 function MyChats({fetchAgain,setFetchAgain}){

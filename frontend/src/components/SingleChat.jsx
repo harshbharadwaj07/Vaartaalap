@@ -11,7 +11,7 @@ import Image from "react-bootstrap/Image";
 import UpdateGroup from "./extras/UpdateGroup";
 
 // const ENDPOINT="http://localhost:5000";
-const ENDPOINT="https://vaartalaap.onrender.com";
+const ENDPOINT="https://vaartalaap-backend.onrender.com";
 var socket,selectChatCompare;
 
 function SingleChat({fetchAgain,setFetchAgain}){
