@@ -8,6 +8,7 @@ const session=require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const passport=require("passport");
 const passportLocalMongoose=require("passport-local-mongoose");
+const path=require("path");
 const app=express();
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,20 @@ const PORT=process.env.PORT;
 // import authenticated routes file
 require("./auth")(app);
 
+// -------------------- deployment ----------------- //
+const __dirname1=path.resolve()
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname1,"/frontend/build")));
+
+    app.get("*",function(req,res){
+        res.sendFile(path.resolve(__dirname1,"/frontend/build/index.html"));
+    });
+}else{
+    app.get("/",function(req,res){
+        res.send("Server API is running");
+    })
+}
+// -------------------- deployment ----------------- //
 const server=app.listen(PORT,function(){
     console.log(`Server started at port ${PORT}`);
 });
@@ -29,7 +44,7 @@ const server=app.listen(PORT,function(){
 const io=require("socket.io")(server,{
     pingTimeout:120000,
     cors:{
-        origin:["https://vaartalaap.onrender.com","http://localhost:3000"]
+        origin:"http://localhost:3000"
     }
 });
 

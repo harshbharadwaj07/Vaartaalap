@@ -61,9 +61,6 @@ module.exports=function(app){
     });
   });
 
-  app.get("/",function(req,res){
-    res.send("Server is started and running!");
-  })
   // main function for sending the user information
   app.get("/profile",function(req,res){
     if(req.isAuthenticated()){

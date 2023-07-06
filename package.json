@@ -1,0 +1,21 @@
+{
+  "name": "vaartalaap",
+  "version": "1.0.0",
+  "description": "MERN Stack Real-time Chatting Application",
+  "main": "index.js",
+  "scripts": {
+    "build":"cd backend && npm install && cd ../frontend && npm install && npm run builld",
+    "start":"node backend/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshbharadwaj07/vaartalaap.git"
+  },
+  "author": "Harsh Bharadwaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshbharadwaj07/vaartalaap/issues"
+  },
+  "homepage": "https://github.com/harshbharadwaj07/vaartalaap#readme"
+}
