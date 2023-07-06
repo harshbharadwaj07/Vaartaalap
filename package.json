@@ -4,7 +4,7 @@
   "description": "MERN Stack Real-time Chatting Application",
   "main": "index.js",
   "scripts": {
-    "build":"cd backend && npm install && cd ../frontend && npm install && npm run builld",
+    "build":"cd backend && npm install && cd ../frontend && npm install && npm run build",
     "start":"node backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
