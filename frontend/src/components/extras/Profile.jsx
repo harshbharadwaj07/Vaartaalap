@@ -5,7 +5,7 @@ import { UserContext } from "../../App";
 import Image from "react-bootstrap/Image"
 
 function Profile({user,children}){
-    const {theme,selectChat}=useContext(UserContext);
+    const {theme}=useContext(UserContext);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

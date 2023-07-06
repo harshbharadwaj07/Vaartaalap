@@ -34,34 +34,36 @@ function GroupChat({children}){
     const [cond,setCond]=useState(false);
 
     const handleSearch=async (query)=>{
-        setLoad(true);
-        if(!query) return;
-        
-            try{
-                const res=await fetch(`/users?search=${query}`,{
-                    method:"GET",
-                    headers:{
-                        Accept:"application/json",
-                        "Content-Type":"application/json"
-                    },
-                    credentials:"include"
-                });
-                const data= await res.json();
-                setSearchResult(data);
-                if(res.status!==200){
-                    navigate("/chats");
+        if(query.length>0){
+            setLoad(true);
+            if(!query) return;
+            
+                try{
+                    const res=await fetch(`/users?search=${query}`,{
+                        method:"GET",
+                        headers:{
+                            Accept:"application/json",
+                            "Content-Type":"application/json"
+                        },
+                        credentials:"include"
+                    });
+                    const data= await res.json();
+                    setSearchResult(data);
+                    if(res.status!==200){
+                        navigate("/chats");
+                    }
+                    else if(res.status===200||res.status===304){
+                        // setEmpty(false);
+                        setLoad(false);
+                        // console.log(data);
+                    }
+                }catch(err){
+                    // navigate("/signin");
+                    setCond(true);
+                    setErrorMsg("An error occured while loading the list");
                 }
-                else if(res.status===200||res.status===304){
-                    // setEmpty(false);
-                    setLoad(false);
-                    // console.log(data);
-                }
-            }catch(err){
-                // navigate("/signin");
-                setCond(true);
-                setErrorMsg("An error occured while loading the list");
-            }
-        setLoad(false);
+            setLoad(false);
+        }else setSearchResult([]);
     }
 
     const handleSubmit=async()=>{
@@ -154,6 +156,7 @@ function GroupChat({children}){
                         autoFocus
                         disabled={creating}
                         onChange={(e)=>setGroupName(e.target.value)}
+                        autoComplete="off"
                     />
                     </Form.Group>
                     <Form.Group
@@ -165,6 +168,7 @@ function GroupChat({children}){
                         placeholder="Add Members"
                         disabled={creating}
                         onChange={(e)=>handleSearch(e.target.value)}
+                        autoComplete="off"
                     />
                     </Form.Group>
                 </Form>

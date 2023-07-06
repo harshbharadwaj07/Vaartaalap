@@ -1,10 +1,8 @@
-import { useContext } from "react"
+import React from "react";
 import Card from "react-bootstrap/Card"
 import Image from "react-bootstrap/Image"
-import { UserContext } from "../../App"
 
 function ListItem({user,handleClick}){
-    const {selectChat}=useContext(UserContext);
     return(
         <div>
             <Card onClick={handleClick}>

@@ -7,12 +7,14 @@ import Image from "react-bootstrap/Image";
 import GroupChat from "./extras/GroupChat";
 import io from "socket.io-client";
 import Alert from "react-bootstrap/Alert"
+import { useNavigate } from "react-router-dom";
 
 // const ENDPOINT="http://localhost:5000";
 const ENDPOINT="https://vaartalaap-backend.onrender.com";
 var socket;
 
 function MyChats({fetchAgain,setFetchAgain}){
+    const navigate=useNavigate();
     const [loggedUser,setLoggedUser]=useState("");
     const {theme,selectChat,setSelectChat,chats,setChats}=useContext(UserContext);
     const [socketConnect,setSocketConnect]=useState(false);

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 function Logout(){
     const navigate=useNavigate();
-    const {state,dispatch,setSelectChat}=useContext(UserContext);
+    const {dispatch,setSelectChat}=useContext(UserContext);
     const [userData,setUserData]=useState({});
     async function callLogoutPage(){
         try{
