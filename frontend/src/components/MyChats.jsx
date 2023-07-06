@@ -10,7 +10,7 @@ import Alert from "react-bootstrap/Alert"
 import { useNavigate } from "react-router-dom";
 
 // const ENDPOINT="http://localhost:5000";
-const ENDPOINT="https://vaartalaap-backend.onrender.com";
+const ENDPOINT="https://vaartalaap.onrender.com";
 var socket;
 
 function MyChats({fetchAgain,setFetchAgain}){

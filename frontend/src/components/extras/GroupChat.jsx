@@ -11,7 +11,7 @@ import Alert from "../Alert"
 import io from "socket.io-client"
 
 // const ENDPOINT="http://localhost:5000";
-const ENDPOINT="https://vaartalaap-backend.onrender.com";
+const ENDPOINT="https://vaartalaap.onrender.com";
 var socket;
 
 function GroupChat({children}){
