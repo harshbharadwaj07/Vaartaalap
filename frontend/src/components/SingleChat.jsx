@@ -41,8 +41,8 @@ function SingleChat({fetchAgain,setFetchAgain}){
     
     
     const handleSubmit=async(event)=>{
-      setSending(true);
-      if(!event.shiftKey){
+      if(newMessage.length>0){
+        setSending(true);
       if(((event.key==="Enter" && !event.shiftKey)||event.type==="click") && newMessage.trim()){
         // textareaRef.current.style.height = 'auto'; // Reset textarea height
         try {
@@ -78,6 +78,7 @@ function SingleChat({fetchAgain,setFetchAgain}){
     }
       setSending(false);
     }
+    
 
     const fetchMessages=async()=>{
       if(!selectChat) return;

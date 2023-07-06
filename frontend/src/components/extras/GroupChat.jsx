@@ -25,17 +25,16 @@ function GroupChat({children}){
     // Group Chat
     const [groupName,setGroupName]=useState("");
     const [selectUser,setSelectUser]=useState([]);
-    const [search,setSearch]=useState("");
     const [searchResult,setSearchResult]=useState([]);
     const [load,setLoad]=useState(false);
     const [socketConnect,setSocketConnect]=useState(false);
+    const [creating,setCreating]=useState(false);
 
     const [errormsg,setErrorMsg]=useState("");
     const [cond,setCond]=useState(false);
 
     const handleSearch=async (query)=>{
         setLoad(true);
-        setSearch(query);
         if(!query) return;
         
             try{
@@ -66,6 +65,7 @@ function GroupChat({children}){
     }
 
     const handleSubmit=async()=>{
+        setCreating(true);
         try {
         const res=await fetch("/group",{
             method:"POST",
@@ -99,16 +99,21 @@ function GroupChat({children}){
             setErrorMsg(error);
             setCond(true);
         }
+        setCreating(false);
     }
 
-    const handleGrp=(addUser)=>{
-        if(selectUser.includes(addUser)){
-            setErrorMsg("User already selected");
-            setCond(true);
-            return;
+    const handleGrp = (addUser) => {
+        const userExists = selectUser.some((user) => user._id === addUser._id);
+      
+        if (userExists) {
+          setErrorMsg("User already selected");
+          setCond(true);
+          return;
         }
-        setSelectUser([...selectUser,addUser]);
-    }
+      
+        setSelectUser([...selectUser, addUser]);
+      };
+      
 
     const handleDel=(usr)=>{
         setSelectUser(selectUser.filter((sel)=>sel._id!==usr._id));
@@ -121,7 +126,7 @@ function GroupChat({children}){
     
     setTimeout(function () {
         setCond(false);
-    }, 5000);
+    }, 10000);
 
     return(
         <div>
@@ -147,6 +152,7 @@ function GroupChat({children}){
                         type="text"
                         placeholder="Chat Name"
                         autoFocus
+                        disabled={creating}
                         onChange={(e)=>setGroupName(e.target.value)}
                     />
                     </Form.Group>
@@ -157,6 +163,7 @@ function GroupChat({children}){
                     <Form.Control
                         type="text"
                         placeholder="Add Members"
+                        disabled={creating}
                         onChange={(e)=>handleSearch(e.target.value)}
                     />
                     </Form.Group>
@@ -175,7 +182,7 @@ function GroupChat({children}){
                 )}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={handleSubmit}>Create Group</Button>
+                <Button variant="success" disabled={creating} onClick={handleSubmit}>{creating?<Spinner size="sm"/>:"Create Group"}</Button>
             </Modal.Footer>
             </Modal>
         </div>
