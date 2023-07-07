@@ -87,7 +87,7 @@ module.exports=function(app){
   });
 
   ////// Chats
-  app.get("/chats",async function(req,res){
+  app.get("/getchats",async function(req,res){
     if(req.isAuthenticated()){
       try{
         Chat.find({users:{$elemMatch:{$eq:req.user._id}}})
@@ -109,7 +109,7 @@ module.exports=function(app){
     }else res.send("Not Authenticated");
   });
 
-  app.post("/chats",async function(req,res){
+  app.post("/postchats",async function(req,res){
     if(req.isAuthenticated()){
       const userId=req.body.userId;
       if (!userId) {

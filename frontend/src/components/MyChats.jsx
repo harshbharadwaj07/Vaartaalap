@@ -29,7 +29,7 @@ function MyChats({fetchAgain,setFetchAgain}){
     const fetchChats=async ()=>{
         setLoadChat(true);
         try{
-            const res=await fetch("/chats",{
+            const res=await fetch("/getchats",{
                 method:"GET",
                 headers:{
                     Accept:"application/json",

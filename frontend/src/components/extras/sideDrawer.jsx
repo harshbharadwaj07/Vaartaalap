@@ -64,7 +64,7 @@ function SideDrawer(){
     async function openChat(userId){  // opening chats from list
         try{
             setLoad(true);
-            const res=await fetch("/chats",{
+            const res=await fetch("/postchats",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
