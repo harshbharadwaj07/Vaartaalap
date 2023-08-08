@@ -261,13 +261,13 @@ function UpdateGroup({fetchAgain,setFetchAgain,fetchMessages}){
             </Modal.Header>
             <Modal.Body>
             {cond && <Alert msg={errormsg} type={type}/>}
-            <Form className="d-flex">
+            <Form className="d-flex" disabled={delgrpload||renameLoad}>
                 <Form.Control type="text" placeholder="Enter new group name" onChange={(e)=>setGroupName(e.target.value)} autoComplete="off"/>
                 <Button type="submit" variant="success" className="w-50 my-2" onClick={handleRename}>{renameLoad===true?<div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>:"Update"}</Button>
             </Form>
             {(selectChat.GrpChat && selectChat.admin.username===localStorage.getItem("username")) && (
                 <>
-                    <Form>
+                    <Form disabled={delgrpload}>
                         <div className="d-flex">
                         <Form.Control type="text" placeholder="Enter new user to group" onChange={(e)=>handleSearch(e.target.value)} autoComplete="off"/>
                         </div>
